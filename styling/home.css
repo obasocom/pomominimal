@@ -1,0 +1,30 @@
+/* Timer */
+.timer {
+  display: inline-block;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  padding: 96px 258px;
+  border-radius: 30px;
+  box-shadow: inset 0 0 32px var(#333);
+  color: white;
+}
+.timer-part {
+  font-size: 36px;
+  font-weight: bold;
+}
+.timer_btn {
+  width: 100px;
+  height: 100px;
+  margin-left: 16px;
+  border-radius: 50%;
+  border: none;
+  color: white;
+  background: #8208e6;
+  cursor: pointer;
+}
+.timer_btn--start {
+  background: #00b44c;
+}
+.timer_btn--stop {
+  background-color: #ff0256;
+}

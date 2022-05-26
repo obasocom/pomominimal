@@ -1,0 +1,169 @@
+:root {
+  --back-color: #3d3a4b;
+  --slider-color: #e3dfff;
+  --text-color: #d3c0cd;
+  --selection-color: #b19994;
+
+  font-family: "Yomogi", cursive;
+}
+
+body {
+  background-color: var(--back-color);
+  color: var(--text-color);
+  font: var(--text-color);
+  font-family: "Yomogi", cursive;
+}
+.home {
+  text-align: center;
+  font-family: "Yomogi", cursive;
+
+  font-weight: 10;
+  background-color: var(--back-color);
+  font: var(--text-color);
+}
+a {
+  text-decoration: none;
+  font-family: "Yomogi", cursive;
+
+  color: var(--text-color);
+}
+a:hover {
+  color: var(--selection-color);
+  z-index: 4;
+}
+h1 {
+  font-size: 30px;
+  font-style: lighter;
+}
+/**Home Page Buttons **/
+.links {
+  border-radius: 35px;
+  padding: 10px 10px;
+  margin: 3%;
+  text-align: center;
+  transition: 1s ease-out 100ms;
+  font-size: 28px;
+}
+:hover.links {
+  color: var(--text-color);
+  border-radius: 35px;
+  transition: 1s ease-in 100ms;
+}
+/** end of Home **/
+/**Timer portion*/
+.timer {
+  font-size: 60px;
+  display: inline-block;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  padding: 96px 258px;
+  border-radius: 30px;
+  box-shadow: inset 0 0 32px var(--text-color);
+  color: var(--selection-color);
+}
+/**end of timer */
+/* Top Portion */
+.top {
+  clear: both;
+  background-color: var(--back-color);
+  border: solid var(--back-color) 1px;
+  margin-bottom: 50px;
+  padding-top: 25px;
+  padding-bottom: 50px;
+  color: var(--text-color);
+  width: 99%;
+  height: 60px;
+  display: grid;
+  font-size: 48px;
+}
+/*end of logo*/
+
+/* Top Nav Buttons */
+.topNav {
+  margin: 0px;
+  margin-bottom: 20px;
+  padding: 0px;
+  display: flex;
+  flex-direction: row;
+  color: var(--text-color);
+}
+.topButtons {
+  list-style: none;
+  flex: 1;
+}
+/* end of top nav btns */
+
+/* Bottom Nav Buttons */
+.bottNav {
+  margin: 0px;
+  margin-top: 20px;
+  padding: 0px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  color: var(--text-color);
+}
+.bottButtons {
+  list-style: none;
+  flex: 1;
+}
+/* end of bott nav btns */
+
+/*Back nav buttons */
+.backBtn {
+  height: 40px;
+  clear: both;
+  padding: 5px;
+  background-color: var(--back-color);
+  border: 1px solid transparent;
+  color: var(--text-color);
+  font-weight: bolder;
+  font-size: 24px;
+}
+.backBtn.backBtn-slide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  background-color: var(--slider-color);
+
+  transition: transform 500ms ease-in;
+  transform: scaleX(0);
+  transform-origin: left;
+  height: 80px;
+}
+.backBtn.backBtn-slide:hover::before,
+.backBtn.backBtn-slide:focus::before {
+  transform: scale(1);
+}
+.backBtn.backBtn-slide {
+  transition: var(--selection-color) 300ms ease-in-out;
+  z-index: 4;
+}
+.backBtn.backBtn-slide:hover,
+.backBtn.backBtn-slide:focus {
+  color: var(--selection-color);
+  z-index: 4;
+}
+/* Margins of display */
+.leftMargin {
+  position: static;
+  float: left;
+  margin-top: 150px;
+  height: 900px;
+  border: solid var(--back-color) 10px;
+  color: var(--back-color);
+}
+.rightMargin {
+  position: static;
+  float: right;
+  border: solid black 10px;
+  border: solid var(--back-color) 10px;
+  color: var(--back-color);
+  margin-left: 40px;
+  margin-top: 150px;
+  height: 900px;
+}

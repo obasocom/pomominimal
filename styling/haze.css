@@ -1,0 +1,25 @@
+/* Flashlight */
+:root {
+  --cursorX: 50vw;
+  --cursorY: 50vh;
+  --flash-strength: 10vmax;
+  --window-area-width: 100%;
+  --window-area-height: 100%;
+}
+.hazeOn {
+  all: 0.35s ease-in-out;
+}
+.hazeOn:before {
+  content: "";
+  display: block;
+  width: var(--window-area-width);
+  height: var(--window-area-height);
+  position: fixed;
+  pointer-events: none;
+  background: radial-gradient(
+    circle var(--flash-strength) at var(--cursorX) var(--cursorY),
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.5) 80%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
+}

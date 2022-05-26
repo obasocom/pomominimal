@@ -1,0 +1,186 @@
+/* Theme Page CSS */
+
+:root {
+  --back-color: black;
+  --slider-color: white;
+  --text-color: #white;
+  --selection-color: #666;
+
+  font-family: "Yomogi", cursive;
+}
+body {
+  text-align: center;
+  font-family: "Yomogi", cursive;
+
+  font-weight: 10;
+  background-color: var(--back-color);
+  font: var(--text-color);
+}
+
+h1 {
+  font-size: 30px;
+  font-style: lighter;
+}
+a {
+  text-decoration: none;
+  font-family: "Yomogi", cursive;
+
+  color: var(--text-color);
+}
+a:hover {
+  color: var(--selection-color);
+  z-index: 4;
+}
+.top {
+  clear: both;
+  position: fixed;
+  z-index: 5;
+  background-color: var(--back-color);
+  border: solid var(--back-color) 1px;
+  margin: 0;
+  top: 0;
+  padding-top: 25px;
+  padding-bottom: 50px;
+  color: var(--text-color);
+  width: 99%;
+  height: 60px;
+  display: grid;
+  box-shadow: 10px 50px 50px var(--back-color);
+}
+.backBtn {
+  height: 40px;
+  clear: both;
+  padding: 5px;
+  background-color: var(--back-color);
+  border: 1px solid transparent;
+  color: var(--text-color);
+  font-weight: bolder;
+  font-size: 24px;
+}
+.backBtn.backBtn-slide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  background-color: var(--text-color);
+
+  transition: transform 500ms ease-in;
+  transform: scaleX(0);
+  transform-origin: left;
+  height: 80px;
+}
+.backBtn.backBtn-slide:hover::before,
+.backBtn.backBtn-slide:focus::before {
+  transform: scale(1);
+}
+.backBtn.backBtn-slide {
+  transition: color 300ms ease-in-out;
+  z-index: 4;
+}
+.backBtn.backBtn-slide:hover,
+.backBtn.backBtn-slide:focus {
+  color: var(--back-color);
+  z-index: 4;
+}
+
+.themes {
+  padding-top: 200px;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+img {
+  margin-top: 20px;
+  border-radius: 10px;
+  width: 150px;
+  height: 100px;
+  margin-bottom: 50px;
+}
+.colorOption1 {
+  float: left;
+  position: relative;
+  padding-left: 100px;
+  padding-bottom: 75px;
+  color: wheat;
+  font-size: 22px;
+}
+#img1 {
+  transition: 0.5s;
+}
+#img1:hover {
+  box-shadow: 0 0 10px 10px #584d2d, 0 0 150px 10px wheat;
+}
+.colorOption2 {
+  float: right;
+  position: relative;
+  padding-right: 100px;
+  padding-bottom: 75px;
+  color: rgb(227, 223, 255);
+  font-size: 22px;
+}
+#img2 {
+  transition: 0.5s;
+}
+#img2:hover {
+  box-shadow: 0 0 10px 10px #e3dfff, 0 0 150px 10px #d3c0cd;
+}
+.colorOption3 {
+  clear: both;
+  float: left;
+  position: relative;
+  padding-left: 100px;
+  padding-bottom: 75px;
+  color: rgb(186, 44, 115);
+  font-size: 22px;
+}
+#img3 {
+  transition: 0.5s;
+}
+#img3:hover {
+  box-shadow: 0 0 10px 10px #ba2c73, 0 0 150px 50px #6d3b47;
+}
+.colorOption4 {
+  float: right;
+  padding-right: 100px;
+  padding-bottom: 75px;
+  color: rgb(92, 92, 92);
+  font-size: 22px;
+}
+#img4 {
+  transition: 0.5s;
+}
+#img4:hover {
+  box-shadow: 0 0 10px 10px #5c5c5c, 0 0 150px 50px #3d3d3d;
+}
+.colorOption5 {
+  clear: both;
+  float: left;
+  padding-left: 100px;
+  padding-bottom: 75px;
+  color: rgb(183, 183, 164);
+  font-size: 22px;
+}
+#img5 {
+  transition: 0.5s;
+}
+#img5:hover {
+  box-shadow: 0 0 10px 10px #89896c, 0 0 150px 50px #a97c5a;
+}
+.colorOption6 {
+  float: right;
+  padding-right: 100px;
+  padding-bottom: 75px;
+  color: rgb(166, 128, 140);
+  font-size: 22px;
+}
+#img6 {
+  transition: 0.5s;
+}
+#img6:hover {
+  box-shadow: 0 0 10px 10px #afd2e9, 0 0 150px 50px #9a7197;
+}
