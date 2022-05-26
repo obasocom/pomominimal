@@ -118,5 +118,9 @@ h1 {
 .sub {
   margin: 0px;
 }
+.priority {
+  margin: 0px;
+  color: aqua;
+}
 
 /* end of bott nav btns */
