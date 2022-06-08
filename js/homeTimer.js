@@ -1,6 +1,12 @@
 // document.body.classList.add("hazeOff");
 var docBody = document.body;
 
+const Sounds = [
+  new Audio("../sounds/KalimbaC.wav"),
+  new Audio("../sounds/KalimbaC1.wav"),
+  new Audio("../sounds/KalimbaE5.wav"),
+];
+
 class Timer {
   constructor(root) {
     root.innerHTML = Timer.getHTML();
@@ -66,7 +72,14 @@ class Timer {
       this.remainingSeconds--;
       this.updateInterfaceTime();
       // this.sound.play();
-      if (this.remainingSeconds <= 0) this.stop();
+      if (this.remainingSeconds <= 0) {
+        for (let i = 0; i < Sounds.length; i++) {
+          setTimeout(function () {
+            Sounds[i].play();
+          }, 1000);
+        }
+        this.stop();
+      }
     }, 1000);
 
     this.updateInterfaceControls();
