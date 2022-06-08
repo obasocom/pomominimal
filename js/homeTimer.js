@@ -3,8 +3,8 @@ var docBody = document.body;
 
 const Sounds = [
   new Audio("../sounds/KalimbaC.wav"),
-  new Audio("../sounds/KalimbaC1.wav"),
   new Audio("../sounds/KalimbaE5.wav"),
+  new Audio("../sounds/KalimbaC1.wav"),
 ];
 
 class Timer {
@@ -17,7 +17,6 @@ class Timer {
       control: root.querySelector(".timer__btn--control"),
       reset: root.querySelector(".timer__btn--reset"),
       break: 0,
-      // sound: new Audio("sounds/the_best_alarm_ever.mp3"),
     };
 
     this.interval = null;
@@ -71,13 +70,19 @@ class Timer {
     this.interval = setInterval(() => {
       this.remainingSeconds--;
       this.updateInterfaceTime();
-      // this.sound.play();
       if (this.remainingSeconds <= 0) {
+        var rand = [];
+        while (rand.length < Sounds.length) {
+          var r = Math.floor(Math.random() * Sounds.length);
+          if (rand.indexOf(r) === -1) rand.push(r);
+          console.log(r);
+        }
         for (let i = 0; i < Sounds.length; i++) {
           setTimeout(function () {
-            Sounds[i].play();
-          }, 1000);
+            Sounds[rand[i]].play();
+          }, 800 * i);
         }
+
         this.stop();
       }
     }, 1000);
@@ -114,20 +119,28 @@ class Timer {
     docBody.classList.add("hazeOff");
   }
   static getHTML() {
-    return `
-              <span class="timer__part timer__part--minutes">25</span>
+    return (
+      `
+              <span class="timer__part timer__part--minutes">` +
+      25 +
+      `</span>
               <span class="timer__part">:</span>
-              <span class="timer__part timer__part--seconds">00</span>
+              <span class="timer__part timer__part--seconds">` +
+      "00" +
+      `</span>
               <button type="button" class="timer__btn timer__btn--control timer__btn--start">
                   <span class="material-icons">play_arrow</span>
               </button>
               <button type="button" class="timer__btn timer__btn--reset">
                   <span class="material-icons">timer</span>
               </button>
-          `;
+          `
+    );
   }
 }
 
 var timer = new Timer(document.querySelector(".timer"));
 sessionStorage.setItem("timer", JSON.stringify(timer));
 //TODO: MAKE SO THAT TIMER IS GLOBAL AND INSTANCED ACROSS MULTIPLE PAGES
+//TODO: MAKE SURE THAT TIMER IS SAVED IN SESSIONSTORAGE
+//TODO: Make adjustable time more dynamic and user friendly

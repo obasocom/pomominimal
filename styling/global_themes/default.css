@@ -82,9 +82,19 @@ h1 {
   padding: 20px;
   transition: 0.8s;
 }
-.material-icons:hover {
+
+.timer__btn:hover {
   transition: 0.8s;
-  box-shadow: inset 0 0 20px var(--text-color);
+  color: var(--selection-color);
+  box-shadow: inset 0 0 10px var(--text-color);
+  border-radius: 10px;
+}
+.timer__btn {
+  transition: 0.8s;
+  background-color: var(--back-color);
+  border: 0;
+  border-radius: 10px;
+  color: var(--text-color);
 }
 /**end of timer */
 /* Top Nav Buttons */
