@@ -81,18 +81,9 @@ h1 {
   position: relative;
 }
 
-#timer-options-top {
-  display: inline;
-}
 ::-webkit-scrollbar {
   width: 0px;
 }
-
-/* Track */
-::-webkit-scrollbar-track {
-  opacity: 0;
-}
-
 /*end of timer-options*/
 
 /**Timer portion*/
