@@ -65,8 +65,36 @@ h1 {
   display: grid;
   font-size: 48px;
 }
-
 /*end of logo*/
+
+/*timer-options*/
+#timer-options-container {
+  margin-top: 3%;
+  height: 5%;
+  overflow: auto;
+}
+
+#timer-options {
+  height: 0;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+#timer-options-top {
+  display: inline;
+}
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  opacity: 0;
+}
+
+/*end of timer-options*/
+
 /**Timer portion*/
 .timer {
   font-size: 60px;
@@ -89,7 +117,13 @@ h1 {
   box-shadow: inset 0 0 10px var(--text-color);
   border-radius: 10px;
 }
-.timer__btn {
+.timer__btn,
+#timer-5min,
+#timer-15min,
+#timer-25min,
+#timer-30min,
+#timer-45min,
+#timer-60min {
   transition: 0.8s;
   background-color: var(--back-color);
   border: 0;
