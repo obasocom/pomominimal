@@ -1,4 +1,3 @@
-// document.body.classList.add("hazeOff");
 var docBody = document.body;
 
 const Sounds = [
@@ -36,12 +35,40 @@ class Timer {
     });
 
     this.el.reset.addEventListener("click", () => {
-      const inputMinutes = prompt("Enter number of minutes:");
-      if (inputMinutes < 60) {
-        this.stop();
-        this.remainingSeconds = inputMinutes * 60;
-        this.updateInterfaceTime();
+      $("#timer-options").animate({ height: 100 }, "slow");
+    });
+    this.el.reset.addEventListener("click", () => {
+      if ($("#timer-options").height() == 100) {
+        $("#timer-options").animate({ height: 0 }, "medium");
       }
+    });
+
+    $("#timer-5min").click(() => {
+      this.remainingSeconds = 300;
+      this.updateInterfaceTime();
+    });
+    $("#timer-15min").click(() => {
+      this.remainingSeconds = 900;
+      this.updateInterfaceTime();
+    });
+    $("#timer-25min").click(() => {
+      this.remainingSeconds = 1500;
+      this.updateInterfaceTime();
+    });
+    $("#timer-30min").click(() => {
+      this.remainingSeconds = 1800;
+      this.updateInterfaceTime();
+    });
+    $("#timer-45min").click(() => {
+      this.remainingSeconds = 2700;
+      this.updateInterfaceTime();
+    });
+    $("#timer-60min").click(() => {
+      this.remainingSeconds = 3600;
+      this.updateInterfaceTime();
+    });
+    document.getElementById("timer-options").addEventListener("click", () => {
+      $("#timer-options").animate({ height: 0 }, "slow");
     });
   }
 
@@ -118,6 +145,7 @@ class Timer {
     docBody.classList.remove("hazeOn");
     docBody.classList.add("hazeOff");
   }
+
   static getHTML() {
     return (
       `
