@@ -35,10 +35,10 @@ class Timer {
     });
 
     this.el.reset.addEventListener("click", () => {
-      $("#timer-options").animate({ height: 100 }, "slow");
+      $("#timer-options").animate({ height: 140 }, "slow");
     });
     this.el.reset.addEventListener("click", () => {
-      if ($("#timer-options").height() == 100) {
+      if ($("#timer-options").height() > 0) {
         $("#timer-options").animate({ height: 0 }, "medium");
       }
     });
