@@ -22,6 +22,10 @@ class Timer {
     this.remainingSeconds = 1500;
     this.break = 0;
 
+    // When the user clicks on the timer button
+    // if haze is off, turn on
+    // else turn off
+    // alternates between the two states
     this.el.control.addEventListener("click", () => {
       if (this.interval === null) {
         this.start();
@@ -34,6 +38,8 @@ class Timer {
       }
     });
 
+    // Following funcitons are used to show timer options
+    // for both intervals and breaks
     this.el.reset.addEventListener("click", () => {
       $("#timer-options").stop().animate({ height: 200 }, "slow");
     });
@@ -43,6 +49,14 @@ class Timer {
       }
     });
 
+    //TODO: Discuss possible options with keeping this active until edit button
+    //pressed or have hide every time an option is selected
+    // $("#timer-options").click(() => {
+    //   $("#timer-options").stop().animate({ height: 0 }, "slow");
+    //   console.log("click bitxh");
+    // });
+
+    //Following functions are for changing the time
     $("#timer-5min").click(() => {
       this.remainingSeconds = 300;
       this.updateInterfaceTime();
@@ -73,6 +87,7 @@ class Timer {
     });
   }
 
+  //Updates the time on the interface
   updateInterfaceTime() {
     const minutes = Math.floor(this.remainingSeconds / 60);
     const seconds = this.remainingSeconds % 60;
@@ -80,7 +95,9 @@ class Timer {
     this.el.minutes.textContent = minutes.toString().padStart(2, "0");
     this.el.seconds.textContent = seconds.toString().padStart(2, "0");
   }
-
+  // Updates the control buttons visuals so they better match
+  // what the use may expect to see when activating and
+  // deactivating the timer
   updateInterfaceControls() {
     if (this.interval === null) {
       this.el.control.innerHTML = `<span class="material-icons">play_arrow</span>`;
@@ -93,6 +110,7 @@ class Timer {
     }
   }
 
+  // Begins timer and if timer runs out, plays sound
   start() {
     if (this.remainingSeconds == 0) this.remainingSeconds = 1;
     if (this.remainingSeconds < 0) return;
@@ -111,28 +129,27 @@ class Timer {
             Sounds[rand[i]].play();
           }, 800 * i);
         }
-
         this.stop();
       }
     }, 1000);
-
     this.updateInterfaceControls();
   }
 
+  // Stops timer and updates interface.
+  // Deactivates flash light
   stop() {
-    if (this.remainingSeconds <= 0) {
-      localStorage.setItem("hazeOn", false);
-      docBody.classList.remove("hazeOn");
-      docBody.classList.add("hazeOff");
-      if (this.break == 0) {
-        this.remainingSeconds = 300;
-        this.break = 1;
-      } else if (this.break == 1) {
-        this.remainingSeconds = 1500;
-        this.break = 0;
-      }
+    localStorage.setItem("hazeOn", false);
+    docBody.classList.remove("hazeOn");
+    docBody.classList.add("hazeOff");
+    if (this.break == 0) {
+      this.remainingSeconds = 300;
+      this.break = 1;
+    } else if (this.break == 1) {
+      this.remainingSeconds = 1500;
+      this.break = 0;
     }
 
+    // Clears interval
     clearInterval(this.interval);
     this.interval = null;
     this.updateInterfaceTime();
@@ -173,4 +190,3 @@ var timer = new Timer(document.querySelector(".timer"));
 sessionStorage.setItem("timer", JSON.stringify(timer));
 //TODO: MAKE SO THAT TIMER IS GLOBAL AND INSTANCED ACROSS MULTIPLE PAGES
 //TODO: MAKE SURE THAT TIMER IS SAVED IN SESSIONSTORAGE
-//TODO: Make adjustable time more dynamic and user friendly

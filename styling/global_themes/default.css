@@ -170,11 +170,18 @@ h1 {
 .sub {
   margin: 0px;
 }
+.sub_sub {
+  margin-top: 0px;
+}
 .priority {
   margin: 0px;
   color: aqua;
 }
 .lower-nav {
   margin-bottom: 3%;
+}
+.to-do {
+  display: inline-block;
+  text-align: left;
 }
 /* end of bott nav btns */
