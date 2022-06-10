@@ -73,7 +73,21 @@ h1 {
   height: 5%;
   overflow: auto;
 }
-
+.timer-options-header {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+#timer-break-container,
+#timer-interval-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "break-label break-input" "interval-label interval-input";
+  margin-bottom: 10px;
+}
 #timer-options {
   height: 0;
   margin: 0;

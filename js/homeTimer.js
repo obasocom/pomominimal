@@ -35,7 +35,7 @@ class Timer {
     });
 
     this.el.reset.addEventListener("click", () => {
-      $("#timer-options").animate({ height: 140 }, "slow");
+      $("#timer-options").animate({ height: 150 }, "slow");
     });
     this.el.reset.addEventListener("click", () => {
       if ($("#timer-options").height() > 0) {
@@ -67,6 +67,10 @@ class Timer {
       this.remainingSeconds = 3600;
       this.updateInterfaceTime();
     });
+    $("#debug").click(() => {
+      this.remainingSeconds = 0;
+      this.updateInterfaceTime();
+    });
     document.getElementById("timer-options").addEventListener("click", () => {
       $("#timer-options").animate({ height: 0 }, "slow");
     });
@@ -93,7 +97,8 @@ class Timer {
   }
 
   start() {
-    if (this.remainingSeconds <= 0) return;
+    if (this.remainingSeconds == 0) this.remainingSeconds = 1;
+    if (this.remainingSeconds < 0) return;
     this.interval = setInterval(() => {
       this.remainingSeconds--;
       this.updateInterfaceTime();
