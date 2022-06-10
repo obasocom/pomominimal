@@ -174,5 +174,7 @@ h1 {
   margin: 0px;
   color: aqua;
 }
-
+.lower-nav {
+  margin-bottom: 3%;
+}
 /* end of bott nav btns */
