@@ -35,11 +35,11 @@ class Timer {
     });
 
     this.el.reset.addEventListener("click", () => {
-      $("#timer-options").animate({ height: 150 }, "slow");
+      $("#timer-options").stop().animate({ height: 200 }, "slow");
     });
     this.el.reset.addEventListener("click", () => {
       if ($("#timer-options").height() > 0) {
-        $("#timer-options").animate({ height: 0 }, "medium");
+        $("#timer-options").stop().animate({ height: 0 }, "slow");
       }
     });
 
@@ -70,9 +70,6 @@ class Timer {
     $("#debug").click(() => {
       this.remainingSeconds = 0;
       this.updateInterfaceTime();
-    });
-    document.getElementById("timer-options").addEventListener("click", () => {
-      $("#timer-options").animate({ height: 0 }, "slow");
     });
   }
 
