@@ -57,27 +57,19 @@ class Timer {
     // });
 
     //Following functions are for changing the time
-    $("#timer-5min").click(() => {
+    $("#timer-5min-pomo").click(() => {
       this.remainingSeconds = 300;
       this.updateInterfaceTime();
     });
-    $("#timer-15min").click(() => {
+    $("#timer-15min-pomo").click(() => {
       this.remainingSeconds = 900;
       this.updateInterfaceTime();
     });
-    $("#timer-25min").click(() => {
+    $("#timer-25min-pomo").click(() => {
       this.remainingSeconds = 1500;
       this.updateInterfaceTime();
     });
-    $("#timer-30min").click(() => {
-      this.remainingSeconds = 1800;
-      this.updateInterfaceTime();
-    });
-    $("#timer-45min").click(() => {
-      this.remainingSeconds = 2700;
-      this.updateInterfaceTime();
-    });
-    $("#timer-60min").click(() => {
+    $("#timer-60min-pomo").click(() => {
       this.remainingSeconds = 3600;
       this.updateInterfaceTime();
     });
@@ -141,10 +133,10 @@ class Timer {
     localStorage.setItem("hazeOn", false);
     docBody.classList.remove("hazeOn");
     docBody.classList.add("hazeOff");
-    if (this.break == 0) {
+    if (this.break == 0 && this.remainingSeconds == 0) {
       this.remainingSeconds = 300;
       this.break = 1;
-    } else if (this.break == 1) {
+    } else if (this.break == 1 && this.remainingSeconds == 0) {
       this.remainingSeconds = 1500;
       this.break = 0;
     }
