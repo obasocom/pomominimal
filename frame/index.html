@@ -21,7 +21,7 @@
   <body class="home">
     <div class="body">
       <div class="top">
-        <a class="home" href="./index.html">pomominimal.</a>
+        <a class="pomo" href="./index.html">pomominimal.</a>
       </div>
       <!--Upper most navigation menu-->
       <div>
@@ -40,23 +40,34 @@
           </li>
         </ul>
       </div>
-
+    
       <!-- Timer options-->
       <div id="timer-options-container">
         <div id="timer-options">
-          <div id="timer-5min"><a href="#">5 min</a></div>
-          <div id="timer-15min"><a href="#">15 min</a></div>
-          <div id="timer-25min"><a href="#">25 min</a></div>
-          <div id="timer-30min"><a href="#">30 min</a></div>
-          <div id="timer-45min"><a href="#">45 min</a></div>
-          <div id="timer-60min"><a href="#">60 min</a></div>
+          <div id="timer-interval-container">
+            <!-- TDOD: REFACTOR TIMER ID NAMES AND CLASSES -->
+            <h3 class="timer-options-header">interval.</h3>
+            <div id="timer-5min-pomo"><a href="#">5 min</a></div>
+            <div id="timer-15min-pomo"><a href="#">15 min</a></div>
+            <div id="timer-25min-pomo"><a href="#">25 min</a></div>
+            <div id="timer-60min-pomo"><a href="#">60 min</a></div>
+            <div id="debug"><a href="#">0 sec</a></div>
+          </div> <!-- TDOD: REFACTOR TIMER ID NAMES AND CLASSES -->
+          <div id="timer-break-container">
+            <h3 class="timer-options-header">break.</h3>
+            <div id="timer-1min-break"><a href="#">1 min</a></div>
+            <div id="timer-5min-break"><a href="#">5 min</a></div> <!-- TDOD: REFACTOR TIMER ID NAMES AND CLASSES -->
+            <div id="timer-10min-break"><a href="#">10 min</a></div>
+            <div id="timer-15min-break"><a href="#">15 min</a></div>
+            <div id="debug"><a href="#">0 sec</a></div>
+          </div>
         </div>
       </div>
       <!-- Timer Div Here -->
       <div class="timer"></div>
 
       <!-- Bottom most navigation buttons -->
-      <div>
+      <div class="lower-nav">
         <ul class="bottNav">
           <li class="bottButtons">
             <a class="links" href="./about.html">about.</a>
@@ -64,16 +75,19 @@
           <li class="bottButtons">
             <a class="to-do" href="">
               <p>future additions:</p>
-              <p class="sub">-> make this actually useful</p>
               <p class="sub">
                 -> account login? and in turn make custom themes
               </p>
               <p class="sub">
                 -> for flashlight, Lock in place functionality for flashlight
               </p>
-              <p class="priority">-> for timer settings across page</p>
+              <p class="priority">-> for timer, save settings across page</p>
 
               <p class="sub">-> for timer, add restart button</p>
+              <p class="sub_sub">-> for timer, alternate between showing current state of either break or pomo.
+                <p>- thinking of different pomo and break font</p>
+              </p>
+              <p class="priority">-> for timer, When selecting interval or break times, show what is being selectected below current state. refer to notes</p>
             </a>
           </li>
           <li class="bottButtons">

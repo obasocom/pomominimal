@@ -21,6 +21,7 @@ body {
   background-color: var(--back-color);
   font: var(--text-color);
 }
+
 a {
   text-decoration: none;
   font-family: "Yomogi", cursive;
@@ -70,15 +71,35 @@ h1 {
 /*timer-options*/
 #timer-options-container {
   margin-top: 3%;
-  height: 5%;
+  padding-top: 10px;
   overflow: auto;
+  overflow: hidden;
 }
-
+#timer-interval-container {
+  width: 50%;
+  margin-right: 0px;
+}
+#timer-break-container {
+  width: 50%;
+  margin-left: 0px;
+}
+.timer-options-header {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 10px;
+  padding: 0 0 0 10px;
+}
 #timer-options {
   height: 0;
-  margin: 0;
+  width: 50%;
+  margin: 0 auto;
   padding: 0;
+  display: flex;
   position: relative;
+  box-shadow: inset 0 0 15px var(--slider-color);
+  border-radius: 25px;
 }
 
 ::-webkit-scrollbar {
@@ -108,18 +129,16 @@ h1 {
   box-shadow: inset 0 0 10px var(--text-color);
   border-radius: 10px;
 }
-.timer__btn,
-#timer-5min,
-#timer-15min,
-#timer-25min,
-#timer-30min,
-#timer-45min,
-#timer-60min {
+.timer__btn {
   transition: 0.8s;
   background-color: var(--back-color);
   border: 0;
   border-radius: 10px;
   color: var(--text-color);
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
 }
 /**end of timer */
 /* Top Nav Buttons */
@@ -154,9 +173,18 @@ h1 {
 .sub {
   margin: 0px;
 }
+.sub_sub {
+  margin-top: 0px;
+}
 .priority {
   margin: 0px;
   color: aqua;
 }
-
+.lower-nav {
+  margin-bottom: 3%;
+}
+.to-do {
+  display: inline-block;
+  text-align: left;
+}
 /* end of bott nav btns */
