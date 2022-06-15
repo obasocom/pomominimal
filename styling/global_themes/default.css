@@ -21,6 +21,7 @@ body {
   background-color: var(--back-color);
   font: var(--text-color);
 }
+
 a {
   text-decoration: none;
   font-family: "Yomogi", cursive;

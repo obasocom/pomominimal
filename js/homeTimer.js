@@ -182,3 +182,4 @@ var timer = new Timer(document.querySelector(".timer"));
 sessionStorage.setItem("timer", JSON.stringify(timer));
 //TODO: MAKE SO THAT TIMER IS GLOBAL AND INSTANCED ACROSS MULTIPLE PAGES
 //TODO: MAKE SURE THAT TIMER IS SAVED IN SESSIONSTORAGE
+//TODO: ensure selection is displayed to user
