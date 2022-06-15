@@ -145,5 +145,11 @@
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="../js/themeSwitch.js"></script>
-  <script src="../js/displaySlowly.js"></script>
+  <script>$(function () {
+    var dialogue = document.getElementById("dialogue");
+    dialogue.classList.remove("hide");
+    dialogue.classList.add("show");
+    console.log(dialogue);
+  });
+  </script>
 </html>
