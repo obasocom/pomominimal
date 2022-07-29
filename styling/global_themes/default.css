@@ -4,7 +4,7 @@
   --slider-color: white;
   --text-color: white;
   --selection-color: #666;
-
+  --break-color: #444;
   font-family: "Yomogi", cursive;
 }
 body {
@@ -140,6 +140,25 @@ h1 {
   cursor: pointer;
   overflow: hidden;
 }
+.timer__value--container {
+  display: flex;
+}
+.timer__value--times {
+  display: grid;
+}
+.timer__value--times {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+.timer__buttons--container {
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+.timer__value--break {
+  color: var(--break-color);
+  font-size: 34px;
+}
+
 /**end of timer */
 /* Top Nav Buttons */
 .topNav {

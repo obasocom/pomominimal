@@ -159,21 +159,35 @@ class Timer {
 
   static getHTML() {
     return (
-      `
-              <span class="timer__part timer__part--minutes">` +
+      ` <div class="timer__value--container"> 
+        <div class="timer__value--times">
+          <div class="timer__value--pomo">
+            <span class="timer__part timer__part--minutes">` +
       25 +
       `</span>
-              <span class="timer__part">:</span>
-              <span class="timer__part timer__part--seconds">` +
+            <span class="timer__part">:</span>
+            <span class="timer__part timer__part--seconds">` +
       "00" +
+      `</span> 
+          </div>` +
+      ` <div class="timer__value--break">
+          <span class="timer__part timer__part--minutes">` +
+      25 +
       `</span>
-              <button type="button" class="timer__btn timer__btn--control timer__btn--start">
-                  <span class="material-icons">play_arrow</span>
-              </button>
-              <button type="button" class="timer__btn timer__btn--reset">
-                  <span class="material-icons">timer</span>
-              </button>
-          `
+          <span class="timer__part">:</span>
+          <span class="timer__part timer__part--seconds">` +
+      "00" +
+      `</span> 
+        </div></div>
+        <div class="timer__buttons--container">
+          <button type="button" class="timer__btn timer__btn--control timer__btn--start">
+              <span class="material-icons">play_arrow</span>
+          </button>
+          <button type="button" class="timer__btn timer__btn--reset">
+              <span class="material-icons">timer</span>
+          </button>
+        </div>
+      </div>    `
     );
   }
 }
