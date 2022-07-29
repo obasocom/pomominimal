@@ -10,8 +10,10 @@ class Timer {
   constructor(root) {
     root.innerHTML = Timer.getHTML();
 
+    //TODO: Add breakMinutes as a value, use .timer__part below in return string
     this.el = {
-      minutes: root.querySelector(".timer__part--minutes"),
+      pomoMinutes: root.querySelector(".timer__part--pomominutes"),
+      //breakMinutes: .timer__part--breakminsutes
       seconds: root.querySelector(".timer__part--seconds"),
       control: root.querySelector(".timer__btn--control"),
       reset: root.querySelector(".timer__btn--reset"),
@@ -19,7 +21,8 @@ class Timer {
     };
 
     this.interval = null;
-    this.remainingSeconds = 1500;
+    this.remainingSeconds = 1500; //TODO: ranme to pomo remaining
+    //TODO: create break reamining seconds
     this.break = 0;
 
     // When the user clicks on the timer button
@@ -81,11 +84,15 @@ class Timer {
 
   //Updates the time on the interface
   updateInterfaceTime() {
-    const minutes = Math.floor(this.remainingSeconds / 60);
+    const pomominutes = Math.floor(this.remainingSeconds / 60);
     const seconds = this.remainingSeconds % 60;
 
-    this.el.minutes.textContent = minutes.toString().padStart(2, "0");
+    //Pomo Minutes
+    this.el.pomoMinutes.textContent = pomominutes.toString().padStart(2, "0");
     this.el.seconds.textContent = seconds.toString().padStart(2, "0");
+
+    //Break minutes
+    //TODO: Add breakMinutes as a value
   }
   // Updates the control buttons visuals so they better match
   // what the use may expect to see when activating and
@@ -162,7 +169,7 @@ class Timer {
       ` <div class="timer__value--container"> 
         <div class="timer__value--times">
           <div class="timer__value--pomo">
-            <span class="timer__part timer__part--minutes">` +
+            <span class="timer__part timer__part--pomominutes">` +
       25 +
       `</span>
             <span class="timer__part">:</span>
@@ -171,7 +178,7 @@ class Timer {
       `</span> 
           </div>` +
       ` <div class="timer__value--break">
-          <span class="timer__part timer__part--minutes">` +
+          <span class="timer__part timer__part--breakminutes">` +
       25 +
       `</span>
           <span class="timer__part">:</span>
