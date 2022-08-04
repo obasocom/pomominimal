@@ -29,6 +29,7 @@ else {
 // Pomo timer
 if (selectedPomoStartTime == null) selectedPomoStartTime = 1500;
 else selectedPomoStartTime = localStorage.getItem("pomoStartTime");
+
 // Break timer
 if (selectedBreakStartTime == null) selectedBreakStartTime = 300;
 else selectedBreakStartTime = localStorage.getItem("breakStartTime");
@@ -279,7 +280,7 @@ class Timer {
       `</span>
             <span class="timer__part">:</span>
             <span class="timer__part timer__part--pomoseconds">` +
-      savedPomoSeconds +
+      savedPomoSeconds.toString().padStart(2, "0") +
       `</span> 
           </div>` +
       ` <div class="timer__value--break">
@@ -288,7 +289,7 @@ class Timer {
       `</span>
           <span class="timer__part">:</span>
           <span class="timer__part timer__part--breakseconds">` +
-      savedBreakSeconds +
+      savedBreakSeconds.toString().padStart(2, "0") +
       `</span> 
         </div></div>
         <div class="timer__buttons--container">
