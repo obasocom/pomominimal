@@ -1,28 +1,28 @@
 var docBody = document.body;
-
 // Predefine the variables for the timer stored globally ----------------------
 var savedPomoSeconds = localStorage.getItem("pomoSeconds");
 var savedBreakSeconds = localStorage.getItem("breakSeconds");
 var selectedPomoStartTime = localStorage.getItem("pomoStartTime");
 var selectedBreakStartTime = localStorage.getItem("breakStartTime");
-var savedPomoMinutes;
-var savedBreakMinutes;
 
+var displayPomoMinutes;
+var displayBreakMinutes;
+var displayPomoSeconds;
+var displayBreakSeconds;
 //TODO: FORMAT OUTPUT SO THAT 2 DIGITS DISPLAY FOR MINUTES AND SECONDS
 // Set default values if no values are saved -------------------------------------
 // Pomo minutes
-if (savedPomoSeconds == null) savedPomoMinutes = 25;
+if (savedPomoSeconds == null) displayPomoMinutes = 25;
 else {
-  savedPomoMinutes = Math.floor(savedPomoSeconds / 60);
-  savedPomoSeconds = savedPomoSeconds % 60;
+  displayPomoMinutes = Math.floor(savedPomoSeconds / 60);
+  displayPomoSeconds = savedPomoSeconds % 60;
 }
 // Break minutes
-if (savedBreakSeconds == null) savedBreakMinutes = 5;
+if (savedBreakSeconds == null) displayBreakMinutes = 5;
 else {
-  savedBreakMinutes = Math.floor(savedBreakSeconds / 60);
-  savedBreakSeconds = savedBreakSeconds % 60;
+  displayBreakMinutes = Math.floor(savedBreakSeconds / 60);
+  displayBreakSeconds = savedBreakSeconds % 60;
 }
-
 //TODO: FIX THIS, ITS NOT WORKING
 // Default times to display to timer when either pomo or break is selected and their -----
 // timers are completely finished
@@ -34,7 +34,9 @@ else selectedPomoStartTime = localStorage.getItem("pomoStartTime");
 if (selectedBreakStartTime == null) selectedBreakStartTime = 300;
 else selectedBreakStartTime = localStorage.getItem("breakStartTime");
 
-console.log(selectedPomoStartTime);
+console.log("Selected pomo time: " + selectedPomoStartTime);
+console.log("Saved pomo seconds: " + savedPomoSeconds);
+
 // Sound files for the timer --------------------------------------------------
 const Sounds = [
   new Audio("../sounds/KalimbaC.wav"),
@@ -63,14 +65,18 @@ class Timer {
 
     // Determines if the timers were saved previously --------------------------
     // Pomo timer
-    if (localStorage.getItem("pomoSeconds") === null)
-      this.remainingSeconds = 1500;
+    if (savedPomoSeconds == 0) this.remainingSeconds = 1500;
     else this.remainingSeconds = savedPomoSeconds;
     // Break timer
-    if (localStorage.getItem("breakSeconds") === null)
-      this.remainingBreakSeconds = 1;
+    if (savedBreakSeconds == 0) this.remainingBreakSeconds = 300;
     else this.remainingBreakSeconds = savedBreakSeconds;
 
+    console.log(
+      "Remaining seconds: " +
+        this.remainingSeconds +
+        "\nRemaining break seconds: " +
+        this.remainingBreakSeconds
+    );
     // When the user clicks on the timer button --------------------------------
     // if haze is off, turn on
     // else turn off
@@ -131,9 +137,9 @@ class Timer {
       this.updateInterfaceTime();
     });
     $("#debug").click(() => {
-      this.remainingSeconds = 0;
-      localStorage.setItem("pomoSeconds", 0);
-      localStorage.setItem("pomoStartTime", 0);
+      this.remainingSeconds = 1;
+      localStorage.setItem("pomoSeconds", 1);
+      localStorage.setItem("pomoStartTime", 1);
       this.updateInterfaceTime();
     });
     //Following functions are for changing the BREAK time ----------------------
@@ -170,7 +176,7 @@ class Timer {
     const pomoseconds = this.remainingSeconds % 60;
     const breakSeconds = this.remainingBreakSeconds % 60;
     localStorage.setItem("pomoSeconds", this.remainingSeconds);
-    localStorage.setItem("breakSeconds", this.remainingBreakSeconds);
+    localStorage.setItem("breakSeconds", this.remainingBreakSeconds); // <--
     //Pomo Minutes
     this.el.pomoMinutes.textContent = pomominutes.toString().padStart(2, "0");
     this.el.pomoseconds.textContent = pomoseconds.toString().padStart(2, "0");
@@ -192,6 +198,12 @@ class Timer {
       this.el.control.classList.add("timer__btn--stop");
       this.el.control.classList.remove("timer__btn--start");
     }
+    console.log(
+      "Current stored values\nPomo: " +
+        this.remainingSeconds +
+        "\nBreak: " +
+        this.remainingBreakSeconds
+    );
   }
 
   // Begins timer and if timer runs out, plays sound ---------------------------------
@@ -209,12 +221,17 @@ class Timer {
           this.playSound();
         }
       }, 1000);
-    } else if (this.break === 0) {
+    }
+    if (this.break === 0) {
       if (this.remainingSeconds <= 0) return;
       this.interval = setInterval(() => {
         this.remainingSeconds--;
         this.updateInterfaceTime();
-        this.playSound();
+        if (this.remainingSeconds <= 0) {
+          this.stop();
+          this.turnOffFlashLight();
+          this.playSound();
+        }
       }, 1000);
     }
     this.updateInterfaceControls();
@@ -226,11 +243,11 @@ class Timer {
     localStorage.setItem("hazeOn", false);
     docBody.classList.remove("hazeOn");
     docBody.classList.add("hazeOff");
-    if (this.break == 0) {
+    if (this.break == 0 && this.remainingSeconds == 0) {
       //Not break time, display pomo time
       this.remainingSeconds = selectedPomoStartTime;
       this.break = 1;
-    } else if (this.break == 1) {
+    } else if (this.break == 1 && this.remainingBreakSeconds == 0) {
       //IS break time, display break time
       this.remainingBreakSeconds = selectedBreakStartTime;
       this.break = 0;
@@ -276,20 +293,20 @@ class Timer {
         <div class="timer__value--times">
           <div class="timer__value--pomo">
             <span class="timer__part timer__part--pomominutes">` +
-      savedPomoMinutes +
+      displayPomoMinutes +
       `</span>
             <span class="timer__part">:</span>
             <span class="timer__part timer__part--pomoseconds">` +
-      savedPomoSeconds.toString().padStart(2, "0") +
+      displayPomoSeconds.toString().padStart(2, "0") +
       `</span> 
           </div>` +
       ` <div class="timer__value--break">
           <span class="timer__part timer__part--breakminutes">` +
-      savedBreakMinutes +
+      displayBreakMinutes +
       `</span>
           <span class="timer__part">:</span>
           <span class="timer__part timer__part--breakseconds">` +
-      savedBreakSeconds.toString().padStart(2, "0") +
+      displayBreakSeconds.toString().padStart(2, "0") +
       `</span> 
         </div></div>
         <div class="timer__buttons--container">

@@ -202,6 +202,10 @@ h1 {
   margin: 0px;
   color: aqua;
 }
+.complete {
+  margin: 0px;
+  color: greenyellow;
+}
 .lower-nav {
   margin-bottom: 3%;
 }
