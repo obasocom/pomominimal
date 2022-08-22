@@ -1,3 +1,5 @@
+//TODO: Add option to swtich from break to not break.
+//TODO: upon page resfresh, restore and display preselected values rather than saved running values
 var docBody = document.body;
 // Predefine the variables for the timer stored globally ----------------------
 var savedPomoSeconds = localStorage.getItem("pomoSeconds");
@@ -9,7 +11,7 @@ var displayPomoMinutes;
 var displayBreakMinutes;
 var displayPomoSeconds;
 var displayBreakSeconds;
-//TODO: FORMAT OUTPUT SO THAT 2 DIGITS DISPLAY FOR MINUTES AND SECONDS
+
 // Set default values if no values are saved -------------------------------------
 // Pomo minutes
 if (savedPomoSeconds == null) displayPomoMinutes = 25;
@@ -23,7 +25,6 @@ else {
   displayBreakMinutes = Math.floor(savedBreakSeconds / 60);
   displayBreakSeconds = savedBreakSeconds % 60;
 }
-//TODO: FIX THIS, ITS NOT WORKING
 // Default times to display to timer when either pomo or break is selected and their -----
 // timers are completely finished
 // Pomo timer
@@ -49,7 +50,6 @@ class Timer {
   constructor(root) {
     root.innerHTML = Timer.getHTML();
 
-    //TODO: Add breakMinutes as a value, use .timer__part below in return string
     this.el = {
       pomoMinutes: root.querySelector(".timer__part--pomominutes"),
       breakMinutes: root.querySelector(".timer__part--breakminutes"),
@@ -324,7 +324,5 @@ class Timer {
 
 var timer = new Timer(document.querySelector(".timer"));
 sessionStorage.setItem("timer", JSON.stringify(timer));
-//TODO: MAKE SO THAT TIMER IS GLOBAL AND INSTANCED ACROSS MULTIPLE PAGES
-//TODO: MAKE SURE THAT TIMER IS SAVED IN SESSIONSTORAGE
-//TODO: ensure selection is displayed to user
 //TODO: for timer options, try to change color of selected item until a different number is selected
+//TODO: add option to switch from break to not break
