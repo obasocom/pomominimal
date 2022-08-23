@@ -291,7 +291,7 @@ class Timer {
         <div class="timer__value--times">
           <div class="timer__value--pomo">
             <span class="timer__part timer__part--pomominutes">` +
-      displayPomoMinutes +
+      displayPomoMinutes.toString().padStart(2, "0") +
       `</span>
             <span class="timer__part">:</span>
             <span class="timer__part timer__part--pomoseconds">` +
@@ -300,7 +300,7 @@ class Timer {
           </div>` +
       ` <div class="timer__value--break">
           <span class="timer__part timer__part--breakminutes">` +
-      displayBreakMinutes +
+      displayBreakMinutes.toString().padStart(2, "0") +
       `</span>
           <span class="timer__part">:</span>
           <span class="timer__part timer__part--breakseconds">` +
