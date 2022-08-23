@@ -7,7 +7,9 @@ var arrayOfLinks = [
   "http://www.shadyurl.com/",
   "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
   "https://www.youtube.com/watch?v=wnHW6o8WMas",
-];
+]; // array of links to be chosen from (randomly chosen)
+
+// function to randomly choose a link from the array
 (function makeDiv() {
   var divsize = (Math.random() * 100 + 50).toFixed();
   var color = "#ffffff";
@@ -20,10 +22,11 @@ var arrayOfLinks = [
     })
     .attr("href", pickRandSite)
     .attr("target", "_blank");
-  console.log($newdiv);
+  // console.log($newdiv);
   var posx = (Math.random() * ($(document).width() - divsize)).toFixed();
   var posy = (Math.random() * ($(document).height() - divsize)).toFixed();
 
+  //Generates new div in a reandom position with a random size, fading in and out
   $newdiv
     .css({
       position: "absolute",
@@ -40,7 +43,7 @@ var arrayOfLinks = [
     });
   function pickRandSite() {
     var stop = Math.round(Math.random() * arrayOfLinks.length);
-    console.log(stop);
+    // console.log(stop);
     for (var i = 0; i < arrayOfLinks.length; i++) {
       if (i == stop) {
         return arrayOfLinks[i];
