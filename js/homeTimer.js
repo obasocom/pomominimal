@@ -14,17 +14,15 @@ var displayBreakSeconds;
 
 // Set default values if no values are saved -------------------------------------
 // Pomo minutes
-if (savedPomoSeconds == null) displayPomoMinutes = 25;
-else {
-  displayPomoMinutes = Math.floor(savedPomoSeconds / 60);
-  displayPomoSeconds = savedPomoSeconds % 60;
-}
+if (savedPomoSeconds == null) savedPomoSeconds = 1500;
+displayPomoMinutes = Math.floor(savedPomoSeconds / 60);
+displayPomoSeconds = savedPomoSeconds % 60;
+
 // Break minutes
-if (savedBreakSeconds == null) displayBreakMinutes = 5;
-else {
-  displayBreakMinutes = Math.floor(savedBreakSeconds / 60);
-  displayBreakSeconds = savedBreakSeconds % 60;
-}
+if (savedBreakSeconds == null) savedBreakSeconds = 300;
+displayBreakMinutes = Math.floor(savedBreakSeconds / 60);
+displayBreakSeconds = savedBreakSeconds % 60;
+
 // Default times to display to timer when either pomo or break is selected and their -----
 // timers are completely finished
 // Pomo timer
