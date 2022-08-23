@@ -86,10 +86,3 @@ document.addEventListener("DOMContentLoaded", (event) => {
   }
   console.log(document.body.classList);
 });
-
-{
-  // $(".section").click(function () {
-  //   var level = $(this).attr("strength");
-  //   console.log(level);
-  // });
-}
