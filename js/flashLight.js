@@ -7,6 +7,10 @@
 // Grab the selected global flash-strength from the local storage.
 var vMax = localStorage.getItem("flash-strength");
 
+// Update current positon of the mouse every time the mouse moves
+document.addEventListener("mousemove", update);
+document.addEventListener("touchmove", update);
+
 // If the value is not set, set it to the current value.
 // else, set to default value
 if (vMax != null) {
@@ -18,20 +22,35 @@ if (vMax != null) {
     .style.setProperty("--flash-strength", "10vmax");
   console.log(vMax);
 }
-
+// Locks Flashlight in place so that flasihlight does not follow mouse away from
+// timer.
+var interval = false;
+document.body.onkeyup = function (e) {
+  if ((e.key == "G" || e.keyCode == 71) && !interval) {
+    interval = true;
+    console.log(interval);
+  } else if (interval) {
+    interval = false;
+    console.log(interval);
+  }
+};
 // Updates current postion of mouse constantly and
 // stores it into --cursoer-x and --cursor-y css properties
 function update(e) {
-  var x = e.clientX || e.touches[0].clientX;
-  var y = e.clientY || e.touches[0].clientY;
+  if (interval) {
+    var x = e.clientX || e.touches[0].clientX;
+    var y = e.clientY || e.touches[0].clientY;
 
-  document.documentElement.style.setProperty("--cursorX", x + "px");
-  document.documentElement.style.setProperty("--cursorY", y + "px");
+    document.documentElement.style.setProperty("--cursorX", x + "px");
+    document.documentElement.style.setProperty("--cursorY", y + "px");
+  } else {
+    var x = window.innerWidth / 2;
+    var y = window.innerHeight / 2;
+
+    document.documentElement.style.setProperty("--cursorX", x + "px");
+    document.documentElement.style.setProperty("--cursorY", y + "px");
+  }
 }
-
-// Update current positon of the mouse every time the mouse moves
-document.addEventListener("mousemove", update);
-document.addEventListener("touchmove", update);
 
 // Grabs all the available flash-strength values from section in HTML file
 var flashLevels = document.getElementsByClassName("section");
