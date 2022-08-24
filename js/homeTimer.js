@@ -311,8 +311,14 @@ class Timer {
           <button type="button" class="timer__btn timer__btn--control timer__btn--start">
               <span class="material-icons">play_arrow</span>
           </button>
+          <button type="button" class="timer__btn timer__btn--skip">
+              <span class="material-icons">chevron_right</span>
+          </button>
+          <button type="button" class="timer__btn timer__btn--swap">
+              <span class="material-icons">swap_vert</span>
+          </button>
           <button type="button" class="timer__btn timer__btn--reset">
-              <span class="material-icons">timer</span>
+              <span class="material-icons">more_vert</span>
           </button>
         </div>
       </div>    `
