@@ -69,12 +69,6 @@ class Timer {
     if (savedBreakSeconds == 0) this.remainingBreakSeconds = 300;
     else this.remainingBreakSeconds = savedBreakSeconds;
 
-    console.log(
-      "Remaining seconds: " +
-        this.remainingSeconds +
-        "\nRemaining break seconds: " +
-        this.remainingBreakSeconds
-    );
     // When the user clicks on the timer button --------------------------------
     // if haze is off, turn on
     // else turn off
@@ -101,13 +95,6 @@ class Timer {
         $("#timer-options").stop().animate({ height: 0 }, "slow");
       }
     });
-
-    //TODO: Discuss possible options with keeping this active until edit button
-    //pressed or have hide every time an option is selected
-    // $("#timer-options").click(() => {
-    //   $("#timer-options").stop().animate({ height: 0 }, "slow");
-    //   console.log("click bitxh");
-    // });
 
     //Following functions are for changing the POMO time ----------------------
     $("#timer-5min-pomo").click(() => {
@@ -165,26 +152,12 @@ class Timer {
       localStorage.setItem("breakStartTime", 900);
       this.updateInterfaceTime();
     });
-    if (this.break === 1) {
-      $(".timer__value--pomo").css({
-        "text-shadow": "0px 0px 1px var(--break-color)",
-        color: "var(--break-color)",
-      });
-      $(".timer__value--break").css({
-        "text-shadow": "0px 0px 15px var(--pomo-color)",
-        color: "var(--pomo-color)",
-      });
-    }
-    if (this.break === 0) {
-      $(".timer__value--pomo").css({
-        "text-shadow": "0px 0px 15px var(--pomo-color)",
-        color: "var(--pomo-color)",
-      });
-      $(".timer__value--break").css({
-        "text-shadow": "0px 0px 1px var(--break-color)",
-        color: "var(--break-color)",
-      });
-    }
+
+    $(".timer__btn--swap").click(() => {
+      this.updateVisualStatus();
+      this.swapMode();
+    });
+    this.updateVisualStatus();
   }
 
   //Updates the time on the interface -----------------------------------------
@@ -202,6 +175,8 @@ class Timer {
     //Break minutes
     this.el.breakMinutes.textContent = breakMinutes.toString().padStart(2, "0");
     this.el.breakseconds.textContent = breakSeconds.toString().padStart(2, "0");
+
+    this.updateVisualStatus();
   }
   // Updates the control buttons visuals so they better match the state ---------
   // what the use may expect to see when activating and
@@ -216,20 +191,16 @@ class Timer {
       this.el.control.classList.add("timer__btn--stop");
       this.el.control.classList.remove("timer__btn--start");
     }
-    console.log(
-      "Current stored values\nPomo: " +
-        this.remainingSeconds +
-        "\nBreak: " +
-        this.remainingBreakSeconds
-    );
   }
 
   // Begins timer and if timer runs out, plays sound ---------------------------------
   start() {
-    console.log(this.break);
-
     if (this.break === 1) {
-      if (this.remainingBreakSeconds <= 0) return;
+      if (this.remainingBreakSeconds <= 0) {
+        this.remainingSeconds = localStorage.getItem("pomoStartTime");
+        this.updateInterfaceControls();
+        return;
+      }
       this.interval = setInterval(() => {
         this.remainingBreakSeconds--;
         this.updateInterfaceTime();
@@ -239,17 +210,13 @@ class Timer {
           this.playSound();
         }
       }, 1000);
-      $(".timer__value--pomo").css({
-        "text-shadow": "0px 0px 1px var(--break-color)",
-        color: "var(--break-color)",
-      });
-      $(".timer__value--break").css({
-        "text-shadow": "0px 0px 15px var(--pomo-color)",
-        color: "var(--pomo-color)",
-      });
     }
     if (this.break === 0) {
-      if (this.remainingSeconds <= 0) return;
+      if (this.remainingSeconds <= 0) {
+        this.remainingSeconds = localStorage.getItem("pomoStartTime");
+        this.updateInterfaceControls();
+        return;
+      }
       this.interval = setInterval(() => {
         this.remainingSeconds--;
         this.updateInterfaceTime();
@@ -259,14 +226,6 @@ class Timer {
           this.playSound();
         }
       }, 1000);
-      $(".timer__value--pomo").css({
-        "text-shadow": "0px 0px 15px var(--pomo-color)",
-        color: "var(--pomo-color)",
-      });
-      $(".timer__value--break").css({
-        "text-shadow": "0px 0px 1px var(--break-color)",
-        color: "var(--break-color)",
-      });
     }
     this.updateInterfaceControls();
   }
@@ -310,7 +269,6 @@ class Timer {
     while (rand.length < Sounds.length) {
       var r = Math.floor(Math.random() * Sounds.length);
       if (rand.indexOf(r) === -1) rand.push(r);
-      //console.log(r);
     }
     for (let i = 0; i < Sounds.length; i++) {
       setTimeout(function () {
@@ -320,6 +278,39 @@ class Timer {
     this.stop();
   }
 
+  swapMode() {
+    if (this.break === 1) {
+      this.break = 0;
+      this.remainingBreakSeconds = localStorage.getItem("breakStartTime");
+    } else {
+      this.break = 1;
+      this.remainingSeconds = localStorage.getItem("pomoStartTime");
+    }
+    this.updateInterfaceTime();
+  }
+
+  updateVisualStatus() {
+    if (this.break === 1) {
+      $(".timer__value--pomo").css({
+        "text-shadow": "0px 0px 1px var(--break-color)",
+        color: "var(--break-color)",
+      });
+      $(".timer__value--break").css({
+        "text-shadow": "0px 0px 15px var(--pomo-color)",
+        color: "var(--pomo-color)",
+      });
+    }
+    if (this.break === 0) {
+      $(".timer__value--pomo").css({
+        "text-shadow": "0px 0px 15px var(--pomo-color)",
+        color: "var(--pomo-color)",
+      });
+      $(".timer__value--break").css({
+        "text-shadow": "0px 0px 1px var(--break-color)",
+        color: "var(--break-color)",
+      });
+    }
+  }
   // Creates dynamically created timer elements and appends them to the DOM -------
   static getHTML() {
     return (
