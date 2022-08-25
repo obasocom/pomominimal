@@ -165,6 +165,26 @@ class Timer {
       localStorage.setItem("breakStartTime", 900);
       this.updateInterfaceTime();
     });
+    if (this.break === 1) {
+      $(".timer__value--pomo").css({
+        "text-shadow": "0px 0px 1px var(--break-color)",
+        color: "var(--break-color)",
+      });
+      $(".timer__value--break").css({
+        "text-shadow": "0px 0px 15px var(--pomo-color)",
+        color: "var(--pomo-color)",
+      });
+    }
+    if (this.break === 0) {
+      $(".timer__value--pomo").css({
+        "text-shadow": "0px 0px 15px var(--pomo-color)",
+        color: "var(--pomo-color)",
+      });
+      $(".timer__value--break").css({
+        "text-shadow": "0px 0px 1px var(--break-color)",
+        color: "var(--break-color)",
+      });
+    }
   }
 
   //Updates the time on the interface -----------------------------------------
@@ -219,6 +239,14 @@ class Timer {
           this.playSound();
         }
       }, 1000);
+      $(".timer__value--pomo").css({
+        "text-shadow": "0px 0px 1px var(--break-color)",
+        color: "var(--break-color)",
+      });
+      $(".timer__value--break").css({
+        "text-shadow": "0px 0px 15px var(--pomo-color)",
+        color: "var(--pomo-color)",
+      });
     }
     if (this.break === 0) {
       if (this.remainingSeconds <= 0) return;
@@ -231,6 +259,14 @@ class Timer {
           this.playSound();
         }
       }, 1000);
+      $(".timer__value--pomo").css({
+        "text-shadow": "0px 0px 15px var(--pomo-color)",
+        color: "var(--pomo-color)",
+      });
+      $(".timer__value--break").css({
+        "text-shadow": "0px 0px 1px var(--break-color)",
+        color: "var(--break-color)",
+      });
     }
     this.updateInterfaceControls();
   }
@@ -311,8 +347,14 @@ class Timer {
           <button type="button" class="timer__btn timer__btn--control timer__btn--start">
               <span class="material-icons">play_arrow</span>
           </button>
+          <button type="button" class="timer__btn timer__btn--skip">
+              <span class="material-icons">chevron_right</span>
+          </button>
+          <button type="button" class="timer__btn timer__btn--swap">
+              <span class="material-icons">swap_vert</span>
+          </button>
           <button type="button" class="timer__btn timer__btn--reset">
-              <span class="material-icons">timer</span>
+              <span class="material-icons">more_vert</span>
           </button>
         </div>
       </div>    `
