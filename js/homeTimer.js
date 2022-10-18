@@ -14,12 +14,18 @@ var displayBreakSeconds;
 
 // Set default values if no values are saved -------------------------------------
 // Pomo minutes
-if (savedPomoSeconds == null) savedPomoSeconds = 1500;
+if (savedPomoSeconds == null) {
+  savedPomoSeconds = 1500;
+  localStorage.setItem("pomoStartTime", savedPomoSeconds);
+}
 displayPomoMinutes = Math.floor(savedPomoSeconds / 60);
 displayPomoSeconds = savedPomoSeconds % 60;
 
 // Break minutes
-if (savedBreakSeconds == null) savedBreakSeconds = 300;
+if (savedBreakSeconds == null) {
+  savedBreakSeconds = 300;
+  localStorage.setItem("breakStartTime", savedBreakSeconds);
+}
 displayBreakMinutes = Math.floor(savedBreakSeconds / 60);
 displayBreakSeconds = savedBreakSeconds % 60;
 
@@ -167,7 +173,7 @@ class Timer {
     const pomoseconds = this.remainingSeconds % 60;
     const breakSeconds = this.remainingBreakSeconds % 60;
     localStorage.setItem("pomoSeconds", this.remainingSeconds);
-    localStorage.setItem("breakSeconds", this.remainingBreakSeconds); // <--
+    localStorage.setItem("breakSeconds", this.remainingBreakSeconds);
     //Pomo Minutes
     this.el.pomoMinutes.textContent = pomominutes.toString().padStart(2, "0");
     this.el.pomoseconds.textContent = pomoseconds.toString().padStart(2, "0");
