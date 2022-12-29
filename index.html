@@ -1,100 +1,103 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
+
+<head>
     <!--Author: Oscar Basoco-->
     <!--Description:. Da good o'l home page :))) -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Pomominimal</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Yomogi&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Yomogi&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styling\haze.css" />
     <link rel="stylesheet" href="styling\global_themes\default.css" />
     <link rel="stylesheet" id="switcher-id" href="" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    />
-  </head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+</head>
 
-  <body class="home">
+<body class="home">
     <div class="body">
-      <div class="top">
-        <a class="pomo" href="index.html">pomominimal.</a>
-      </div>
-      <!--Upper most navigation menu-->
-      <div>
-        <ul class="topNav">
-          <li class="topButtons">
-            <a class="links" href="frame\themes.html"> themes. </a>
-          </li>
-          <li class="topButtons">
-            <a class="links" href="frame\timer.html"> timer. </a>
-          </li>
-          <li class="topButtons">
-            <a class="links" href="frame\flash.html"> flashlight. </a>
-          </li>
-          <li class="topButtons">
-            <a class="links" href="frame\break.html"> break. </a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Timer options-->
-      <div id="timer-options-container">
-        <div id="timer-options">
-          <div id="timer-interval-container">
-            <!-- TDOD: REFACTOR TIMER ID NAMES AND CLASSES -->
-            <h3 class="timer-options-header">interval.</h3>
-            <div id="timer-5min-pomo"><a href="#">5 min</a></div>
-            <div id="timer-15min-pomo"><a href="#">15 min</a></div>
-            <div id="timer-25min-pomo"><a href="#">25 min</a></div>
-            <div id="timer-60min-pomo"><a href="#">60 min</a></div>
-            <div id="debug"><a href="#">1 sec</a></div>
-          </div>
-          <!-- TDOD: REFACTOR TIMER ID NAMES AND CLASSES -->
-          <div id="timer-break-container">
-            <h3 class="timer-options-header">break.</h3>
-            <div id="timer-1min-break"><a href="#">1 min</a></div>
-            <div id="timer-5min-break"><a href="#">5 min</a></div>
-            <!-- TDOD: REFACTOR TIMER ID NAMES AND CLASSES -->
-            <div id="timer-10min-break"><a href="#">10 min</a></div>
-            <div id="timer-15min-break"><a href="#">15 min</a></div>
-            <div id="debug"><a href="#">1 sec</a></div>
-          </div>
+        <div class="top">
+            <a class="pomo" href="index.html">pomominimal.</a>
         </div>
-      </div>
-      <!-- Timer Div Here -->
-      <div class="timer"></div>
+        <!--Upper most navigation menu-->
+        <div>
+            <ul class="topNav">
+                <li class="topButtons">
+                    <a class="links" href="frame\themes.html"> themes. </a>
+                </li>
+                <!--
+                <li class="topButtons">
+                    <a class="links" href="frame\timer.html"> timer. </a>
+                </li>
+                -->
+                <li class="topButtons">
+                    <a class="links" href="frame\flash.html"> flashlight. </a>
+                </li>
+                <!--
+                <li class="topButtons">
+                    <a class="links" href="frame\break.html"> break. </a>
+                </li>
+                -->
+                <li class="bottButtons">
+                    <a class="links" href="frame\about.html">about.</a>
+                </li>
+            </ul>
+        </div>
 
-      <!-- Bottom most navigation buttons -->
-      <div class="lower-nav">
-        <ul class="bottNav">
-          <li class="bottButtons">
-            <a class="links" href="frame\about.html">about.</a>
-          </li>
-          <li class="bottButtons">
-            <a class="to-do" href="">
-              <p>future additions:</p>
-              <p class="sub">
-                -> account login? and in turn make custom themes
-              </p>
-            </a>
-          </li>
+        <!-- Timer options-->
+        <div id="timer-options-container">
+            <div id="timer-options">
+                <div id="timer-interval-container">
+                    <!-- TDOD: REFACTOR TIMER ID NAMES AND CLASSES -->
+                    <h3 class="timer-options-header">interval.</h3>
+                    <div id="timer-5min-pomo"><a href="#">5 min</a></div>
+                    <div id="timer-15min-pomo"><a href="#">15 min</a></div>
+                    <div id="timer-25min-pomo"><a href="#">25 min</a></div>
+                    <div id="timer-60min-pomo"><a href="#">60 min</a></div>
+                    <div id="debug"><a href="#">1 sec</a></div>
+                </div>
+                <!-- TDOD: REFACTOR TIMER ID NAMES AND CLASSES -->
+                <div id="timer-break-container">
+                    <h3 class="timer-options-header">break.</h3>
+                    <div id="timer-1min-break"><a href="#">1 min</a></div>
+                    <div id="timer-5min-break"><a href="#">5 min</a></div>
+                    <!-- TDOD: REFACTOR TIMER ID NAMES AND CLASSES -->
+                    <div id="timer-10min-break"><a href="#">10 min</a></div>
+                    <div id="timer-15min-break"><a href="#">15 min</a></div>
+                    <div id="debug"><a href="#">1 sec</a></div>
+                </div>
+            </div>
+        </div>
+        <!-- Timer Div Here -->
+        <div class="timer"></div>
 
-          <li class="bottButtons">
-            <a class="links" href="frame\contact.html">contact.</a>
-          </li>
-        </ul>
-      </div>
+        <!-- Bottom most navigation buttons -->
+        <!--
+        <div class="lower-nav">
+            <ul class="bottNav">
+                <li class="bottButtons">
+                    <a class="links" href="frame\about.html">about.</a>
+                </li>
+                <li class="bottButtons">
+                    <a class="to-do" href="">
+                        <p>future additions:</p>
+                        <p class="sub">
+                            -> account login? and in turn make custom themes
+                        </p>
+                    </a>
+                </li>
+
+                <li class="bottButtons">
+                    <a class="links" href="frame\contact.html">contact.</a>
+                </li>
+            </ul>
+        </div>
+    -->
     </div>
-  </body>
-  <script
-    src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
-    type="text/javascript"
-  ></script>
-  <script src="js\flashLight.js"></script>
-  <script src="js\homeTimer.js"></script>
-  <script src="js\themeSwitch.js"></script>
+</body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="js\flashLight.js"></script>
+<script src="js\homeTimer.js"></script>
+<script src="js\themeSwitch.js"></script>
+
 </html>
