@@ -292,6 +292,7 @@ class Timer {
       this.break = 1;
       this.remainingSeconds = localStorage.getItem("pomoStartTime");
     }
+    this.stop();
     this.updateInterfaceTime();
   }
 
