@@ -103,61 +103,42 @@ class Timer {
     });
 
     //Following functions are for changing the POMO time ----------------------
-    $("#timer-5min-pomo").click(() => {
-      this.remainingSeconds = 300;
-      localStorage.setItem("pomoSeconds", 300);
-      localStorage.setItem("pomoStartTime", 300);
-      this.updateInterfaceTime();
-    });
-    $("#timer-15min-pomo").click(() => {
-      this.remainingSeconds = 900;
-      localStorage.setItem("pomoSeconds", 900);
-      localStorage.setItem("pomoStartTime", 900);
-      this.updateInterfaceTime();
-    });
-    $("#timer-25min-pomo").click(() => {
-      this.remainingSeconds = 1500;
-      localStorage.setItem("pomoSeconds", 1500);
-      localStorage.setItem("pomoStartTime", 1500);
-      this.updateInterfaceTime();
-    });
-    $("#timer-60min-pomo").click(() => {
-      this.remainingSeconds = 3600;
-      localStorage.setItem("pomoSeconds", 3600);
-      localStorage.setItem("pomoStartTime", 3600);
-      this.updateInterfaceTime();
-    });
+
+    var pomoTimes = [5,15,25,60];
+    var breakTimes = [1,5,10,15];
+
+    for(let t of pomoTimes)
+    {
+        let elem = "#timer-" + t + "min-pomo";
+        console.log(elem);
+        let time = t * 60;
+        $(elem).click(() => {
+            this.remainingSeconds = time;
+            localStorage.setItem("pomoSeconds", time);
+            localStorage.setItem("pomoStartTime", time);
+            this.updateInterfaceTime();
+        });
+    }
+
+    for(let t of breakTimes)
+    {
+        let elem = "#timer-" + t + "min-break";
+        let time = t * 60;
+        $(elem).click(() => {
+            this.remainingBreakSeconds = time;
+            localStorage.setItem("breakSeconds", time);
+            localStorage.setItem("breakStartTime", time);
+            this.updateInterfaceTime();
+        });
+    }
+
     $("#debug").click(() => {
       this.remainingSeconds = 1;
       localStorage.setItem("pomoSeconds", 1);
       localStorage.setItem("pomoStartTime", 1);
       this.updateInterfaceTime();
     });
-    //Following functions are for changing the BREAK time ----------------------
-    $("#timer-1min-break").click(() => {
-      this.remainingBreakSeconds = 60;
-      localStorage.setItem("breakSeconds", 60);
-      localStorage.setItem("breakStartTime", 60);
-      this.updateInterfaceTime();
-    });
-    $("#timer-5min-break").click(() => {
-      this.remainingBreakSeconds = 300;
-      localStorage.setItem("breakSeconds", 300);
-      localStorage.setItem("breakStartTime", 300);
-      this.updateInterfaceTime();
-    });
-    $("#timer-10min-break").click(() => {
-      this.remainingBreakSeconds = 600;
-      localStorage.setItem("breakSeconds", 600);
-      localStorage.setItem("breakStartTime", 600);
-      this.updateInterfaceTime();
-    });
-    $("#timer-15min-break").click(() => {
-      this.remainingBreakSeconds = 900;
-      localStorage.setItem("breakSeconds", 900);
-      localStorage.setItem("breakStartTime", 900);
-      this.updateInterfaceTime();
-    });
+
 
     $(".timer__btn--swap").click(() => {
       this.updateVisualStatus();
