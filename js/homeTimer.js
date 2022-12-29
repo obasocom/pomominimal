@@ -139,7 +139,6 @@ class Timer {
       this.updateInterfaceTime();
     });
 
-
     $(".timer__btn--swap").click(() => {
       this.updateVisualStatus();
       this.swapMode();
