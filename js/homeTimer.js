@@ -103,14 +103,10 @@ class Timer {
     });
 
     //Following functions are for changing the POMO time ----------------------
-
-    var pomoTimes = [5,15,25,60];
-    var breakTimes = [1,5,10,15];
-
+    //pomoTimes and breakTimes initalized under init.js
     for(let t of pomoTimes)
     {
         let elem = "#timer-" + t + "min-pomo";
-        console.log(elem);
         let time = t * 60;
         $(elem).click(() => {
             this.remainingSeconds = time;
