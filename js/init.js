@@ -1,10 +1,13 @@
+//********************************************************************************
+// Author(s): Oscar Basoco, Kealen Heinz
+// This file contains the code for the timer on the home page
+//********************************************************************************
+
 var pomoTimes = [5,10,15,20,25,30,45,60];
 var breakTimes = [1,5,10,15];
 var intervalOptHeight = 0;
 
 intervalOptHeight = pomoTimes.length > breakTimes.length ?  intervalOptHeight = pomoTimes.length * 24 : intervalOptHeight = breakTimes.length * 24;
-
-console.log(pomoTimes.length * 24)
 
 
 var pomoList = document.getElementById("timer-interval-container");
