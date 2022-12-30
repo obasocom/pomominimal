@@ -43,7 +43,7 @@ console.log("Selected pomo time: " + selectedPomoStartTime);
 console.log("Saved pomo seconds: " + savedPomoSeconds);
 
 // Sound files for the timer --------------------------------------------------
-const Sounds = [
+var Sounds = [
   new Audio("../sounds/KalimbaC.wav"),
   new Audio("../sounds/KalimbaE5.wav"),
   new Audio("../sounds/KalimbaC1.wav"),
@@ -201,6 +201,7 @@ class Timer {
 
   // Begins timer and if timer runs out, plays sound ---------------------------------
   start() {
+    let re
     if (this.break === 1) {
       if (this.remainingBreakSeconds <= 0) {
         this.remainingSeconds = localStorage.getItem("pomoStartTime");
@@ -213,7 +214,7 @@ class Timer {
         if (this.remainingBreakSeconds <= 0) {
           this.stop();
           this.turnOffFlashLight();
-          this.playSound();
+          this.playSound("pomo");
         }
       }, 1000);
     }
@@ -229,7 +230,7 @@ class Timer {
         if (this.remainingSeconds <= 0) {
           this.stop();
           this.turnOffFlashLight();
-          this.playSound();
+          this.playSound("pomo");
         }
       }, 1000);
     }
@@ -270,17 +271,27 @@ class Timer {
 
   // Creates a uniquely random number between 0 and 2 ---------------------------------
   // and plays a sound based on that number
-  playSound() {
+  playSound(type) {
     var rand = [];
-    while (rand.length < Sounds.length) {
-      var r = Math.floor(Math.random() * Sounds.length);
-      if (rand.indexOf(r) === -1) rand.push(r);
+    if(type == "pomo") {
+      let amount = 3;
+      while (rand.length < amount) {
+        var r = Math.floor(Math.random() * amount);
+        if (rand.indexOf(r) === -1) rand.push(r);
+      } 
+      for (let i = 0; i < amount; i++) {
+        setTimeout(function () {
+          Sounds[rand[i]].play();
+        }, 800 * i);
+      }
     }
-    for (let i = 0; i < Sounds.length; i++) {
-      setTimeout(function () {
-        Sounds[rand[i]].play();
-      }, 800 * i);
-    }
+    if(type == "swap") {
+      let sound = new Audio(Sounds[0].src)
+      sound.currentTime = 0;
+      sound.playbackRate = 10;
+      sound.volume = 0.3;
+      sound.play();
+    };
     this.stop();
   }
 
@@ -292,6 +303,7 @@ class Timer {
       this.break = 1;
       this.remainingSeconds = localStorage.getItem("pomoStartTime");
     }
+    this.playSound("swap");
     this.stop();
     this.updateInterfaceTime();
   }
