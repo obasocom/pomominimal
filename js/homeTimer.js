@@ -94,7 +94,7 @@ class Timer {
     // Following funcitons are used to show timer options ----------------------
     // for both intervals and breaks
     this.el.reset.addEventListener("click", () => {
-      $("#timer-options").stop().animate({ height: 200 }, "slow");
+      $("#timer-options").stop().animate({ height: 53 + intervalOptHeight + 51}, "slow");
     });
     this.el.reset.addEventListener("click", () => {
       if ($("#timer-options").height() > 0) {
@@ -334,9 +334,11 @@ class Timer {
           <button type="button" class="timer__btn timer__btn--control timer__btn--start">
               <span class="material-icons">play_arrow</span>
           </button>
+          <!--
           <button type="button" class="timer__btn timer__btn--skip">
               <span class="material-icons">chevron_right</span>
           </button>
+          -->
           <button type="button" class="timer__btn timer__btn--swap">
               <span class="material-icons">swap_vert</span>
           </button>
