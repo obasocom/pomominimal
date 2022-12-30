@@ -1,5 +1,8 @@
-//TODO: Add option to swtich from break to not break.
-//TODO: upon page resfresh, restore and display preselected values rather than saved running values
+//********************************************************************************
+// Author(s): Oscar Basoco, Kealen Heinz
+// This file contains the code for the timer on the home page
+//********************************************************************************
+
 var docBody = document.body;
 // Predefine the variables for the timer stored globally ----------------------
 var savedPomoSeconds = localStorage.getItem("pomoSeconds");
@@ -353,5 +356,3 @@ class Timer {
 
 var timer = new Timer(document.querySelector(".timer"));
 sessionStorage.setItem("timer", JSON.stringify(timer));
-//TODO: for timer options, try to change color of selected item until a different number is selected
-//TODO: add option to switch from break to not break
