@@ -85,11 +85,11 @@ class Timer {
     this.el.control.addEventListener("click", () => {
       if (this.interval === null) {
         this.start();
-        this.turnOnFlashLight();
+        // this.turnOnFlashLight();
         localStorage.setItem("hazeOn", true);
       } else {
         this.stop();
-        this.turnOffFlashLight();
+        // this.turnOffFlashLight();
         localStorage.setItem("hazeOn", false);
       }
     });
@@ -193,7 +193,7 @@ class Timer {
         this.updateInterfaceTime();
         if (this.remainingBreakSeconds <= 0) {
           this.stop();
-          this.turnOffFlashLight();
+          // this.turnOffFlashLight();
           this.playSound("pomo");
         }
       }, 1000);
@@ -209,7 +209,7 @@ class Timer {
         this.updateInterfaceTime();
         if (this.remainingSeconds <= 0) {
           this.stop();
-          this.turnOffFlashLight();
+          // this.turnOffFlashLight();
           this.playSound("pomo");
         }
       }, 1000);
@@ -240,14 +240,14 @@ class Timer {
     this.updateInterfaceControls();
   }
 
-  turnOnFlashLight() {
-    docBody.classList.remove("hazeOff");
-    docBody.classList.add("hazeOn");
-  }
-  turnOffFlashLight() {
-    docBody.classList.remove("hazeOn");
-    docBody.classList.add("hazeOff");
-  }
+  // turnOnFlashLight() {
+  //   docBody.classList.remove("hazeOff");
+  //   docBody.classList.add("hazeOn");
+  // }
+  // turnOffFlashLight() {
+  //   docBody.classList.remove("hazeOn");
+  //   docBody.classList.add("hazeOff");
+  // }
 
   // Creates a uniquely random number between 0 and 2 ---------------------------------
   // and plays a sound based on that number
