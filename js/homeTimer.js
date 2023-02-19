@@ -1,5 +1,8 @@
-//TODO: Add option to swtich from break to not break.
-//TODO: upon page resfresh, restore and display preselected values rather than saved running values
+//********************************************************************************
+// Author(s): Oscar Basoco, Kealen Heinz
+// This file contains the code for the timer on the home page
+//********************************************************************************
+
 var docBody = document.body;
 // Predefine the variables for the timer stored globally ----------------------
 var savedPomoSeconds = localStorage.getItem("pomoSeconds");
@@ -43,7 +46,7 @@ console.log("Selected pomo time: " + selectedPomoStartTime);
 console.log("Saved pomo seconds: " + savedPomoSeconds);
 
 // Sound files for the timer --------------------------------------------------
-const Sounds = [
+var Sounds = [
   new Audio("../sounds/KalimbaC.wav"),
   new Audio("../sounds/KalimbaE5.wav"),
   new Audio("../sounds/KalimbaC1.wav"),
@@ -82,11 +85,11 @@ class Timer {
     this.el.control.addEventListener("click", () => {
       if (this.interval === null) {
         this.start();
-        this.turnOnFlashLight();
+        // this.turnOnFlashLight();
         localStorage.setItem("hazeOn", true);
       } else {
         this.stop();
-        this.turnOffFlashLight();
+        // this.turnOffFlashLight();
         localStorage.setItem("hazeOn", false);
       }
     });
@@ -94,7 +97,7 @@ class Timer {
     // Following funcitons are used to show timer options ----------------------
     // for both intervals and breaks
     this.el.reset.addEventListener("click", () => {
-      $("#timer-options").stop().animate({ height: 200 }, "slow");
+      $("#timer-options").stop().animate({ height: 53 + intervalOptHeight + 51}, "slow");
     });
     this.el.reset.addEventListener("click", () => {
       if ($("#timer-options").height() > 0) {
@@ -103,61 +106,38 @@ class Timer {
     });
 
     //Following functions are for changing the POMO time ----------------------
-    $("#timer-5min-pomo").click(() => {
-      this.remainingSeconds = 300;
-      localStorage.setItem("pomoSeconds", 300);
-      localStorage.setItem("pomoStartTime", 300);
-      this.updateInterfaceTime();
-    });
-    $("#timer-15min-pomo").click(() => {
-      this.remainingSeconds = 900;
-      localStorage.setItem("pomoSeconds", 900);
-      localStorage.setItem("pomoStartTime", 900);
-      this.updateInterfaceTime();
-    });
-    $("#timer-25min-pomo").click(() => {
-      this.remainingSeconds = 1500;
-      localStorage.setItem("pomoSeconds", 1500);
-      localStorage.setItem("pomoStartTime", 1500);
-      this.updateInterfaceTime();
-    });
-    $("#timer-60min-pomo").click(() => {
-      this.remainingSeconds = 3600;
-      localStorage.setItem("pomoSeconds", 3600);
-      localStorage.setItem("pomoStartTime", 3600);
-      this.updateInterfaceTime();
-    });
+    //pomoTimes and breakTimes initalized under init.js
+    for(let t of pomoTimes)
+    {
+        let elem = "#timer-" + t + "min-pomo";
+        let time = t * 60;
+        $(elem).click(() => {
+            this.remainingSeconds = time;
+            localStorage.setItem("pomoSeconds", time);
+            localStorage.setItem("pomoStartTime", time);
+            this.updateInterfaceTime();
+        });
+    }
+
+    for(let t of breakTimes)
+    {
+        let elem = "#timer-" + t + "min-break";
+        let time = t * 60;
+        $(elem).click(() => {
+            this.remainingBreakSeconds = time;
+            localStorage.setItem("breakSeconds", time);
+            localStorage.setItem("breakStartTime", time);
+            this.updateInterfaceTime();
+        });
+    }
+
     $("#debug").click(() => {
       this.remainingSeconds = 1;
       localStorage.setItem("pomoSeconds", 1);
       localStorage.setItem("pomoStartTime", 1);
       this.updateInterfaceTime();
     });
-    //Following functions are for changing the BREAK time ----------------------
-    $("#timer-1min-break").click(() => {
-      this.remainingBreakSeconds = 60;
-      localStorage.setItem("breakSeconds", 60);
-      localStorage.setItem("breakStartTime", 60);
-      this.updateInterfaceTime();
-    });
-    $("#timer-5min-break").click(() => {
-      this.remainingBreakSeconds = 300;
-      localStorage.setItem("breakSeconds", 300);
-      localStorage.setItem("breakStartTime", 300);
-      this.updateInterfaceTime();
-    });
-    $("#timer-10min-break").click(() => {
-      this.remainingBreakSeconds = 600;
-      localStorage.setItem("breakSeconds", 600);
-      localStorage.setItem("breakStartTime", 600);
-      this.updateInterfaceTime();
-    });
-    $("#timer-15min-break").click(() => {
-      this.remainingBreakSeconds = 900;
-      localStorage.setItem("breakSeconds", 900);
-      localStorage.setItem("breakStartTime", 900);
-      this.updateInterfaceTime();
-    });
+
 
     $(".timer__btn--swap").click(() => {
       this.updateVisualStatus();
@@ -201,6 +181,7 @@ class Timer {
 
   // Begins timer and if timer runs out, plays sound ---------------------------------
   start() {
+    let re
     if (this.break === 1) {
       if (this.remainingBreakSeconds <= 0) {
         this.remainingSeconds = localStorage.getItem("pomoStartTime");
@@ -212,8 +193,8 @@ class Timer {
         this.updateInterfaceTime();
         if (this.remainingBreakSeconds <= 0) {
           this.stop();
-          this.turnOffFlashLight();
-          this.playSound();
+          // this.turnOffFlashLight();
+          this.playSound("pomo");
         }
       }, 1000);
     }
@@ -228,8 +209,8 @@ class Timer {
         this.updateInterfaceTime();
         if (this.remainingSeconds <= 0) {
           this.stop();
-          this.turnOffFlashLight();
-          this.playSound();
+          // this.turnOffFlashLight();
+          this.playSound("pomo");
         }
       }, 1000);
     }
@@ -259,28 +240,38 @@ class Timer {
     this.updateInterfaceControls();
   }
 
-  turnOnFlashLight() {
-    docBody.classList.remove("hazeOff");
-    docBody.classList.add("hazeOn");
-  }
-  turnOffFlashLight() {
-    docBody.classList.remove("hazeOn");
-    docBody.classList.add("hazeOff");
-  }
+  // turnOnFlashLight() {
+  //   docBody.classList.remove("hazeOff");
+  //   docBody.classList.add("hazeOn");
+  // }
+  // turnOffFlashLight() {
+  //   docBody.classList.remove("hazeOn");
+  //   docBody.classList.add("hazeOff");
+  // }
 
   // Creates a uniquely random number between 0 and 2 ---------------------------------
   // and plays a sound based on that number
-  playSound() {
+  playSound(type) {
     var rand = [];
-    while (rand.length < Sounds.length) {
-      var r = Math.floor(Math.random() * Sounds.length);
-      if (rand.indexOf(r) === -1) rand.push(r);
+    if(type == "pomo") {
+      let amount = 3;
+      while (rand.length < amount) {
+        var r = Math.floor(Math.random() * amount);
+        if (rand.indexOf(r) === -1) rand.push(r);
+      } 
+      for (let i = 0; i < amount; i++) {
+        setTimeout(function () {
+          Sounds[rand[i]].play();
+        }, 800 * i);
+      }
     }
-    for (let i = 0; i < Sounds.length; i++) {
-      setTimeout(function () {
-        Sounds[rand[i]].play();
-      }, 800 * i);
-    }
+    if(type == "swap") {
+      let sound = new Audio(Sounds[0].src)
+      sound.currentTime = 0;
+      sound.playbackRate = 10;
+      sound.volume = 0.3;
+      sound.play();
+    };
     this.stop();
   }
 
@@ -292,6 +283,8 @@ class Timer {
       this.break = 1;
       this.remainingSeconds = localStorage.getItem("pomoStartTime");
     }
+    this.playSound("swap");
+    this.stop();
     this.updateInterfaceTime();
   }
 
@@ -344,9 +337,11 @@ class Timer {
           <button type="button" class="timer__btn timer__btn--control timer__btn--start">
               <span class="material-icons">play_arrow</span>
           </button>
+          <!--
           <button type="button" class="timer__btn timer__btn--skip">
               <span class="material-icons">chevron_right</span>
           </button>
+          -->
           <button type="button" class="timer__btn timer__btn--swap">
               <span class="material-icons">swap_vert</span>
           </button>
@@ -361,5 +356,3 @@ class Timer {
 
 var timer = new Timer(document.querySelector(".timer"));
 sessionStorage.setItem("timer", JSON.stringify(timer));
-//TODO: for timer options, try to change color of selected item until a different number is selected
-//TODO: add option to switch from break to not break
